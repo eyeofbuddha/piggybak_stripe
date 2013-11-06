@@ -25,7 +25,7 @@ module PiggybakStripe
           charge = Stripe::Charge.create({
                       :amount => (order.total_due * 100).to_i,
                       :card => self.stripe_token,
-                      :currency => "usd"
+                      :currency => "eur"
                     })
             
           self.attributes = { :transaction_id => charge.id,
