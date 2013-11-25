@@ -33,6 +33,7 @@ module PiggybakStripe
           return true
         rescue Stripe::CardError, Stripe::InvalidRequestError => e
           self.errors.add :payment_method_id, e.message
+          logger.warn "From Stripe: #{e.message}"
           return false
         end
       end
