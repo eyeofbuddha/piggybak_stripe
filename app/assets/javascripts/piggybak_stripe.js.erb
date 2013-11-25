@@ -1,9 +1,7 @@
 //piggybak stripe
-<% stripe_method = Piggybak::PaymentMethod.find_by_klass("::PiggybakStripe::PaymentCalculator::Stripe") %>
-<% if stripe_method.present? %>
-    <% stripe_calculator = ::PiggybakStripe::PaymentCalculator::Stripe.new(stripe_method)%>
 
-  Stripe.setPublishableKey('<%= stripe_calculator.publishable_key %>');
+  
+
 
   function stripeResponseHandler(status, response) {
 
@@ -39,6 +37,9 @@
   }
 
   $(document).ready(function() {
+    publishable_key = $('body').data('publishable-key');
+    alert(publishable_key);
+    Stripe.setPublishableKey(publishable_key);
     if ($('#new_piggybak_order').length){
       $('#new_piggybak_order').validate({
         submitHandler: function(form) {
@@ -47,8 +48,4 @@
       });
     }
   });
-<% else %>
-    console.log('Stripe method was blank, please activate Stripe via admin dashboard');
-    //stripe method was blank
-<% end %>
 
