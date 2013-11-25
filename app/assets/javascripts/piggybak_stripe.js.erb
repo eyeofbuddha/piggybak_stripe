@@ -38,7 +38,6 @@
 
   $(document).ready(function() {
     publishable_key = $('body').data('publishable-key');
-    alert(publishable_key);
     Stripe.setPublishableKey(publishable_key);
     if ($('#new_piggybak_order').length){
       $('#new_piggybak_order').validate({
